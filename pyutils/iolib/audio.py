@@ -46,7 +46,7 @@ def convert2wav(inp_fn, out_fn, rate=None):
     stdout, stderr = runSystemCMD(' '.join(cmd))
     if any([l.startswith('Output file is empty,')
             for l in stderr.split('\n')]):
-        raise ValueError, 'Output file is empty.\n' + stderr
+        raise ValueError('Output file is empty.\n' + stderr)
 
 
 class AudioReader:

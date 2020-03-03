@@ -87,7 +87,7 @@ class AbstractProjection:
       for y in range(self.imsize[1]):
         pixel = image[idx]
         if pixel is None:
-          print x,y
+          print(x,y)
         else:
           self.image[y,x] = pixel
         idx = idx + 1

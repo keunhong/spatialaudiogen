@@ -24,15 +24,15 @@ def prepare_ambisonics(inp_fn, out_fn, inp_codec, overwrite=False):
     elif inp_codec in ('vorbis', 'opus'):
         remap = [0, 1, 2, 3]
     else:
-        raise ValueError, '{}: Unkown input codec: {}.'.format(inp_fn, inp_codec)
+        raise ValueError('{}: Unkown input codec: {}.'.format(inp_fn, inp_codec))
     cmd += ' -af "pan=4c|c0=c{}|c1=c{}|c2=c{}|c3=c{}"'.format(*remap)
     cmd += ' "{}"'.format(out_fn)
-    
+
     print("\nINPUT:", inp_fn, inp_codec)
     print("COMMAND:", cmd)
     print("")
     stdout = os.popen(cmd).read()
-    
+
 
 def prepare_video(inp_fn, stereopsis, projection, out_fn, out_shape, out_rate, overwrite=False):
     if overwrite and os.path.exists(out_fn):
@@ -159,7 +159,7 @@ def compute_flow(video_dir, flow_dir, flownet2_dir, gpu=0):
     if os.path.isdir(flow_dir):
         shutil.rmtree(flow_dir)
     os.makedirs(flow_dir)
-    
+
 
     fn = os.path.join(flow_dir, 'flow_limits.npy')
 
@@ -202,7 +202,7 @@ def compute_flow(video_dir, flow_dir, flownet2_dir, gpu=0):
 
     fn = os.path.join(flow_dir, 'flow_limits.npy')
     np.save(fn, np.array(magnitude_lims))
- 
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -251,11 +251,11 @@ if __name__ == '__main__':
             if args.prep_hr_video:
                 prep_hr_video_fn = os.path.join(args.output_prep_hr_dir, '{}-video.mp4'.format(yid))
                 prepare_video(orig_video_fn, stereopsis,  projection, prep_hr_video_fn, (1080, 1920), 30, args.overwrite)
-                
+
             # Extract frames for training
             frames = os.path.join(args.output_frames_dir, yid)
             extract_frames(prep_audio_fn, prep_video_fn, frames, yid, args.overwrite)
-            
+
             # Precompute audio volume (silence is ignored during training)
             compute_audio_pow(os.path.join(frames, 'ambix'), os.path.join(frames, 'audio_pow.lst'))
 

@@ -66,7 +66,7 @@ class BasicVideoReader:
             self._raw_duration = self._raw_frames / float(self._raw_fps)
 
         else:
-            raise ValueError, 'Backend not supported'
+            raise ValueError('Backend not supported')
 
         if duration is not None:
             self.end_time = min(duration + seek, self._raw_duration)
@@ -316,7 +316,7 @@ class VideoWriter:
                                              quality=quality)
 
         else:
-            raise ValueError, 'Backend not supported'
+            raise ValueError('Backend not supported')
 
     def __del__(self):
         if self.backend == IMAGEIO:
@@ -350,8 +350,8 @@ def test_basic_reader():
         plt.show()
         start_time = time.time()
 
-    print 'Done'
-    print reader.time
+    print('Done')
+    print(reader.time)
 # test_basic_reader()
 
 
