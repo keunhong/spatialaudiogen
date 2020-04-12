@@ -250,7 +250,7 @@ if __name__ == '__main__':
             prepare_video(orig_video_fn, stereopsis,  projection, prep_video_fn, (224, 448), 10, args.overwrite)
             if args.prep_hr_video:
                 prep_hr_video_fn = os.path.join(args.output_prep_hr_dir, '{}-video.mp4'.format(yid))
-                prepare_video(orig_video_fn, stereopsis,  projection, prep_hr_video_fn, (1080, 1920), 30, args.overwrite)
+                prepare_video(orig_video_fn, stereopsis,  projection, prep_hr_video_fn, (1024, 2048), 25, args.overwrite)
 
             # Extract frames for training
             frames = os.path.join(args.output_frames_dir, yid)
